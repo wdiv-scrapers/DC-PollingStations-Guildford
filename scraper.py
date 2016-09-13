@@ -1,4 +1,4 @@
-from gml_scraper import scrape
+from dc_base_scrapers.xml_scraper import GmlScraper
 
 
 stations_url = "http://www2.guildford.gov.uk/ishare5.2.web/getows.ashx?service=WFS&version=1.1.0&request=GetFeature&typeName=polling_places&mapsource=GBC/Inspire"
@@ -36,5 +36,7 @@ districts_fields = {
 council_id = 'E07000209'
 
 
-scrape(stations_url, council_id, 'stations', stations_fields, 'ogc_fid')
-scrape(districts_url, council_id, 'districts', districts_fields, 'ogc_fid')
+stations_scraper = GmlScraper(stations_url, council_id, 'stations', stations_fields, 'ogc_fid')
+stations_scraper.scrape()
+districts_scraper = GmlScraper(districts_url, council_id, 'districts', districts_fields, 'ogc_fid')
+districts_scraper.scrape()
